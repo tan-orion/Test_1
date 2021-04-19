@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="addClient()">Thêm Client</button>
+<button onclick="deleClien()">Xóa Clien</button>
+<table id="list" border="1px"></table>
+<script>
+    class Delete(id,name,date,g)
+class Client{
+    id
+    name
+    date
+    gender
+    constructor(id,name,date,gender) {
+        this.id=id;
+        this.name=name;
+        this.date=date;
+        this.gender=gender
+    }
+
+
+}
+
+let user1= new Client(1,"Tuấn",1991,"male");
+let user2= new Client(2,"Tân",1992,"female");
+
+let manage=[user1,user2];
+
+function display(){
+    let str='';
+    for (i=0;i<manage.length;i++){
+        str+=`<tr>
+
+               <td>${manage[i].id}</td>
+               <td>${manage[i].name}</td>
+               <td>${manage[i].date}</td>
+               <td>${manage[i].gender}</td>
+
+               </tr>`;
+
+    }
+    document.getElementById('list').innerHTML=str;
+}
+display();
+function addClient(){
+    let id=prompt("nhập id");
+    let name=prompt("nhập name");
+    let date=prompt("nhập date");
+    let gender=prompt("nhập gender");
+    let user3= new Client(id,name,date,gender);
+    manage.push(user3);
+    display();
+}
+
+</script>
+</body>
+</html>
