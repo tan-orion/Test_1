@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,30 +6,33 @@
     <title>Title</title>
 </head>
 <body>
-<script>
-    let arr=[6,7,8,9,10,11,12,15,14,19];
-document.write(indexPerfect(arrr));
-function indexPerfect(arr){
-    for(let i=0;i<arr.length;i++) {
-        if (numPerfect(arr[i])) {
-            document.write(i + ' ');
-        }
-    }
-}
-function  numPerfect(num){
-    let sum=0;
-    for(var i=1;i<num;i++){
-        if(num%i==0){
-            sum+=i;
-        }
-    }
-    if(sum==num){
-        return true;
-    }
-    else {
-        return  false;
-    }
-}
-</script>
 </body>
+<script>
+    function checkNumPerfect(number) {
+        let sum = 0
+        for (let i = 1; i < number; i++) {
+            if (number % i == 0) {
+                sum += i;
+            }
+        }
+        if (sum == number) {
+            return true;
+        }
+        return false;
+    }
+    function perfectIndex(array) {
+        let count = 0
+        for (let j = 0; j < array.length; j++) {
+            if (checkNumPerfect(array[j]) == true) {
+                document.write(array[j] + " o vi tri thu " + j + " la SHH" + "<br>")
+                count++;
+            }
+        }
+        if (count == 0) {
+            alert("No Perfect a number")
+        }
+    }
+    let num = [1, 2, 6, 40, 32, 83]
+    perfectIndex(num);
+</script>
 </html>

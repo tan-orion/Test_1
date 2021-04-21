@@ -3,59 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        img {
+            width: 50px;
+        }
+    </style>
 </head>
 <body>
 <button onclick="addClient()">Thêm Client</button>
-<button onclick="deleClien()">Xóa Clien</button>
+
 <table id="list" border="1px"></table>
 <script>
-    class Delete(id,name,date,g)
-class Client{
-    id
-    name
-    date
-    gender
-    constructor(id,name,date,gender) {
-        this.id=id;
-        this.name=name;
-        this.date=date;
-        this.gender=gender
-    }
+    class Client {
+        id
+        name
+        date
+        gender
+        image
 
-
-}
-
-let user1= new Client(1,"Tuấn",1991,"male");
-let user2= new Client(2,"Tân",1992,"female");
-
-let manage=[user1,user2];
-
-function display(){
-    let str='';
-    for (i=0;i<manage.length;i++){
-        str+=`<tr>
-
-               <td>${manage[i].id}</td>
-               <td>${manage[i].name}</td>
-               <td>${manage[i].date}</td>
-               <td>${manage[i].gender}</td>
-
-               </tr>`;
+        constructor(id, name, date, gender, image) {
+            this.id = id;
+            this.name = name;
+            this.date = date;
+            this.gender = gender
+            this.image = image;
+        }
 
     }
-    document.getElementById('list').innerHTML=str;
-}
-display();
-function addClient(){
-    let id=prompt("nhập id");
-    let name=prompt("nhập name");
-    let date=prompt("nhập date");
-    let gender=prompt("nhập gender");
-    let user3= new Client(id,name,date,gender);
-    manage.push(user3);
+
+    let user1 = new Client(1, "Nguyễn Huy Tân", 1991, "Nam");
+    user1.image = "doraemon.png";
+    let user2 = new Client(2, "Nguyễn Thị Hồng Vân", 1992, "Nữ");
+    user2.image = "nobitajpg.jpg"
+
+    let manage = [user1, user2];
+
+    function display() {
+        let str = '';
+        for (i = 0; i < manage.length; i++) {
+            str += '<tr>';
+            str += '<td>' + manage[i].id + '</td>';
+            str += "<td><img src=" + manage[i].image + "></td>";
+            str += '<td>' + manage[i].name + '</td>';
+            str += '<td>' + manage[i].date + '</td>';
+            str += '<td>' + manage[i].gender + '</td>';
+            str += '<td><button onclick="editCLien(' + i + ')">Sửa</button></td>'
+            str += '<td><button onclick="deleteClient(' + i + ')">xóa</button></td>'
+            str += "</tr>";
+
+        }
+        document.getElementById('list').innerHTML = str;
+    }
+
     display();
-}
 
+    function addClient() {
+        let id = prompt("nhập id");
+        let name = prompt("nhập name");
+        let date = prompt("nhập date");
+        let gender = prompt("nhập gender");
+        let image = prompt('nhập ảnh')
+        let user3 = new Client(id, name, date, gender);
+        user3.image = image;
+        manage.push(user3);
+        display();
+    }
+
+    function deleteClient(index) {
+         let check = confirm("do you want delete a user?");
+        if (check) {
+            manage.splice(index, 1);
+            display()
+         }
+    }
+
+    function editCLien(index) {
+        manage[index].id = prompt("enter id",manage[index].id);
+        manage[index].name = prompt("enter name",manage[index].name);
+        manage[index].date = prompt("enter date",manage[index].date);
+        manage[index].gender = prompt("enter gender",manage[index].gender);
+        manage[index].image=prompt("nhập ảnh");
+
+        display()
+
+
+    }
 </script>
 </body>
 </html>
